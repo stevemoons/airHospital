@@ -1,4 +1,4 @@
-package com.demo1;
+package com.airHospital;
 
 import android.app.Application;
 import com.oblador.vectoricons.VectorIconsPackage;

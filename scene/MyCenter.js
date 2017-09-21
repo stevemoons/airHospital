@@ -17,6 +17,7 @@ import theme from './config/theme';
 import Avatar from './component/Avatar';
 import TextButton from './component/TextButton';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Item from './component/ItemComponent';
 
 const screenWidth = Dimensions.get('window').width;
 export default class MyCenter extends Component {
@@ -58,19 +59,12 @@ export default class MyCenter extends Component {
                         </TouchableOpacity>
                     }
                     <View style={styles.list}>
-                        <Item icon="md-heart" text="常用就诊人"  iconColor="#32cd32"
-                              onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有常用就诊人哦~',operate: '添加常用就诊人', go: 'AddPatient'});}}/>
-                        <Item icon="md-pricetag" text="我的账户" onPress={()=> {const { navigate } = this.props.navigation; navigate('MyCount');}}/>
-                        <Item icon="md-star-outline" text="我的就诊" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有就诊记录哦~', operate: '添加就诊'});}}/>
-                        <Item icon="md-star-outline" text="我的检查" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有检查记录哦~', operate: '添加就诊'});}}/>
-                        <Item icon="md-menu" text="我的预约" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有预约记录哦~',operate: '添加预约'});}} />
-                        <Item icon="md-calendar" text="我的申请" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有申请记录哦~',operate: '申请'});}}/>
-                        <Item icon="md-volume-up" text="我的咨询" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有咨询记录哦~',operate: '发起咨询'});}}/>
-                    </View>
-                    <View style={styles.list}>
-                        <Item icon="md-ribbon" text="我的订单" iconColor="#ff4500" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有订单记录哦~',operate: '创建订单'});}}/>
-                        <Item icon="md-ribbon" text="我的关注" iconColor="#ff4500" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有关注记录哦~',operate: '添加关注'});}}/>
-                        <Item icon="md-ribbon" text="我的消息" iconColor="#ff4500" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有消息哦~',operate: '添加关注'});}}/>
+                        <Item icon="md-heart" text="实名认证"  iconColor="#32cd32"
+                              onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'您还没有实名认证~',operate: '去认证', go: 'AddPatient'});}}/>
+                        <Item icon="md-pricetag" text="电子签名" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有电子签名哦~', operate: '创建电子签名'});}}/>
+                        <Item icon="md-star-outline" text="HIS关联绑定" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有关联哦~', operate: '关联绑定'});}}/>
+                        <Item icon="md-star-outline" text="统计报表" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有统计报表哦~', operate: '添加报表'});}}/>
+                        <Item icon="md-ribbon" text="我的礼物" iconColor="#ff4500" onPress={()=> {const { navigate } = this.props.navigation; navigate('DataEmpty',{text:'暂时没有礼物哦~'});}}/>
                         <Item icon="md-settings" text="设置"  onPress={()=> {const { navigate } = this.props.navigation; navigate('Config');}}/>
                     </View>
                 </ScrollView>
@@ -90,50 +84,6 @@ export default class MyCenter extends Component {
                 'Message',
                 "This function currently isn't available",
                 [{text: 'OK', onPress: () => {}}]
-            );
-        }
-    }
-}
-
-class Item extends Component{
-    static propTypes = {
-        icon: PropTypes.string.isRequired,
-        iconColor: PropTypes.string,
-        text: PropTypes.string.isRequired,
-        subText: PropTypes.string,
-        onPress: PropTypes.func
-    }
-
-    static defaultProps = {
-        iconColor: 'gray'
-    }
-
-    render(){
-        const {icon, iconColor, text, subText, onPress} = this.props;
-
-        if(Platform.OS === 'android'){
-            return(
-                <TouchableNativeFeedback onPress={onPress}>
-                    <View style={styles.listItem}>
-                        <Icon name={icon} size={px2dp(22)} color={iconColor}/>
-                        <Text style={{color: 'black', fontSize: px2dp(13), marginLeft: px2dp(20)}}>{text}</Text>
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-                            <Icon name={'ios-arrow-forward'} size={px2dp(15)} style={{color: "#ccc"}}/>
-                        </View>
-                    </View>
-                </TouchableNativeFeedback>
-            );
-        }else if(Platform.OS === 'ios'){
-            return(
-                <TouchableOpacity onPress={onPress} activeOpacity={theme.btnActiveOpacity}>
-                    <View style={styles.listItem}>
-                        <Icon name={icon} size={px2dp(22)} color={iconColor}/>
-                        <Text style={{color: 'black', fontSize: px2dp(15), marginLeft: px2dp(20)}}>{text}</Text>
-                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-                            <Text style={{color: "#ccc"}}>{subText}</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
             );
         }
     }
@@ -163,23 +113,6 @@ const styles = StyleSheet.create({
         borderTopColor: '#e4e4e4',
         marginTop: px2dp(10)
     },
-    list:{
-        flex: 1,
-        borderTopWidth: 1/PixelRatio.get(),
-        borderTopColor: '#e4e4e4',
-        marginTop: px2dp(12)
-    },
-    listItem: {
-        flex: 1,
-        height: px2dp(46),
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: px2dp(25),
-        paddingRight: px2dp(25),
-        borderBottomColor: '#EAEAEA',
-        borderBottomWidth: 2/PixelRatio.get()
-    },
     headerpic: {
         width: screenWidth,
         height: 120
@@ -188,6 +121,12 @@ const styles = StyleSheet.create({
         width: screenWidth,
         height: 'auto',
         backgroundColor: '#FFB5C5'
+    },
+    list:{
+        flex: 1,
+        borderTopWidth: 1/PixelRatio.get(),
+        borderTopColor: '#e4e4e4',
+        marginTop: px2dp(12)
     },
     textview: {
         flex: 1,

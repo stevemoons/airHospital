@@ -11,17 +11,14 @@ import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
 import HomeScene from './HomeScene';
-import MainScreen from './MainScreen';
+import MyInquiry from './MyInquiry';
 import MyCenter from './MyCenter';
-import MyService from './MyService';
+import HealthRoom from './HealthRoom';
 import MyConsult from './MyConsult';
 import LoginScreen from './pages/LoginScreen';
 import Config from './pages/Config';
 import RegisterScreen from './pages/RegisterScreen';
 import PersonInfo from './pages/PersonInfo';
-import MyCount from './pages/MyCount';
-import CountDetil from './pages/CountDetil';
-import AddPatient from './pages/AddPatient';
 import DataEmpty from './component/DataEmpty';
 
 const tabTitles = ['主页', '我的咨询', '我的服务', '个人中心'];
@@ -43,16 +40,16 @@ const tabSelectedIcon = [
 
 const MyTab = TabNavigator({
     MainScreen: {
-        screen: MainScreen,
-        navigationOptions: () => TabOptions('首页', tabIcon[0], tabSelectedIcon[0], '首页', '#FFEC8B', 'gray'),
+        screen: MyConsult,
+        navigationOptions: () => TabOptions('在线咨询', tabIcon[0], tabSelectedIcon[0], '在线咨询', '#FFEC8B', 'gray'),
     },
     MyConsult: {
-        screen: MyConsult,
-        navigationOptions: () => TabOptions('我的咨询', tabIcon[1], tabSelectedIcon[1], '我的咨询', '#FFEC8B', 'gray'),
+        screen: MyInquiry,
+        navigationOptions: () => TabOptions('在线看诊', tabIcon[1], tabSelectedIcon[1], '在线看诊', '#FFEC8B', 'gray'),
     },
     MyService: {
-        screen: MyService,
-        navigationOptions: () => TabOptions('我的服务', tabIcon[2], tabSelectedIcon[2], '我的服务', '#FFEC8B', 'gray'),
+        screen: HealthRoom,
+        navigationOptions: () => TabOptions('健康讲堂', tabIcon[2], tabSelectedIcon[2], '健康讲堂', '#FFEC8B', 'gray'),
     },
     MyCenter: {
         screen: MyCenter,
@@ -121,24 +118,6 @@ const MyNav = StackNavigator({
     },
     DataEmpty: {
         screen: DataEmpty
-    },
-    MyCount: {
-        screen: MyCount,
-        navigationOptions: {
-            headerTitle:'我的账户'
-        }
-    },
-    CountDetil: {
-        screen: CountDetil,
-        navigationOptions: {
-            headerTitle: '账户明细'
-        }
-    },
-    AddPatient: {
-        screen: AddPatient,
-        navigationOptions: {
-            headerTitle: '编辑就诊人信息'
-        }
     }
 },{
 

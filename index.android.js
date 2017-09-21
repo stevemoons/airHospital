@@ -12,7 +12,7 @@ import {
 
 import { StackNavigator } from 'react-navigation';
 import App from './scene/Router';
-export default class demo1 extends Component {
+export default class airHospital extends Component {
 
     render() {
         return (
@@ -21,4 +21,4 @@ export default class demo1 extends Component {
     }
 }
 
-AppRegistry.registerComponent('demo1', () => demo1);
+AppRegistry.registerComponent('airHospital', () => airHospital);

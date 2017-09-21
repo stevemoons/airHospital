@@ -19,9 +19,22 @@ export default class DataEmpty extends Component {
         super(props);
     }
 
+    renderButton(params) {
+        if(params.operate) {
+            return(
+                <TouchableOpacity
+                    onPress={()=> {const { navigate } = this.props.navigation; navigate(params.go);}}
+                    style={styles.button}>
+                    <Text style={styles.btText}>{params.operate}</Text>
+                </TouchableOpacity>
+            )
+        }
+    }
+
+
     render() {
         const { params } = this.props.navigation.state;
-        console.log(params)
+
         return(
             <View style={styles.container}>
                 <View style={styles.IconBack}>
@@ -29,11 +42,7 @@ export default class DataEmpty extends Component {
                 </View>
                 <Text style={{marginTop: 20}}>{params.text}</Text>
                 <View style={styles.btnView}>
-                    <TouchableOpacity
-                        onPress={()=> {const { navigate } = this.props.navigation; navigate(params.go);}}
-                        style={styles.button}>
-                        <Text style={styles.btText}>{params.operate}</Text>
-                    </TouchableOpacity>
+                    {this.renderButton(params)}
                 </View>
             </View>
         )

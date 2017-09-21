@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class demo1 extends Component {
+export default class airHospital extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('demo1', () => demo1);
+AppRegistry.registerComponent('airHospital', () => airHospital);
